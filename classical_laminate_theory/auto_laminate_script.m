@@ -1,6 +1,5 @@
 %% CLT of SIS skin laminate using CFG 1.0
 clear
-clc
 
 %% Layup input
 layup_name = "2023_SIS_layup";

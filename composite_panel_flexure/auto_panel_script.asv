@@ -1,0 +1,15 @@
+%% Housekeeping
+clear
+
+%% Input Files
+% Upper and lower skin
+upper_laminate = "2023_SIS_layup";
+lower_laminate = "2023_SIS_layup"
+
+%% Read in files 
+upper_laminate_file = strcat("../classical_laminate_theory/CLT_output_data/", layup_name, "_ABD_stiffness.xlsx");
+ABD_upper = readcell(layup_file); % Read in layup configuration
+
+%% Various Math Operations
+
+%% Output Files 
