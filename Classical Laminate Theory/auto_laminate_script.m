@@ -3,10 +3,10 @@ clear
 clc
 
 %% Layup input
-layup_file = "2023_Panels/SIS_layup.xlsx";
+layup_file = "CLT_input_layup_data/2023_SIS_layup.xlsx";
 layup_input_data = readcell(layup_file); % Read in layup configuration
 
-material_file = "2023_Panels/material_properties.xlsx";
+material_file = "CLT_input_ply_mat_data/coupon_testing_2023.xlsx";
 material_input_data = readcell(material_file); % Read in used material data
 
 %% Output Options
