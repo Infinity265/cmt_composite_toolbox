@@ -10,6 +10,10 @@ layup_input_data = readcell(layup_file); % Read in layup configuration
 material_file = "CLT_input_ply_mat_data/coupon_testing_2023.xlsx";
 material_input_data = readcell(material_file); % Read in used material data
 
+%% Output Options
+% yes or no
+expanded_layup_data_selected = 'yes'; %TODO haven't implemented this functionality yet 
+
 %% Determining Rotated Stiffness Matrix (Q_bar) for each ply
 size_layup_data = size(layup_input_data);
 size_mat_data = size(material_input_data);
@@ -61,10 +65,8 @@ abd = inv(ABD);
 
 %% Outputs 
 
-dir_out = "CLT_output_data/";
-writematrix(ABD, strcat(dir_out, layup_name, "_ABD_stiffness.xlsx") )
-writematrix(abd, strcat(dir_out, layup_name, "_abd_compliance.xlsx") )
-%%expanded_layup_data_selected = 'yes'; %TODO haven't implemented this functionality yet 
+dir_out = "CLT_output_data/"
+writematrix(abd, strcat(dir_out) )
 
 
 
