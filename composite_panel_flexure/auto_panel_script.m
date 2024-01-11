@@ -13,15 +13,19 @@ lower_laminate_file = strcat("../classical_laminate_theory/CLT_output_data/", lo
 ABD_lower = readmatrix(lower_laminate_file); % Read in layup configuration
 
 %% Required Parameters
-t_upper = 1.2e-3;
-t_lower = 1.2e-3;
-s_core = 6.35e-3;               %Ali core cell diameteer
-
-g_core_mat = 26e9;              %Shear mod of pure ali
-t_core_foil_t = 0.0459;         %Cell wall thickness, see Connie page, I have low confidence
-t_core = 30e-3;
 w = 275e-3;
 L = 400e-3;                     %Span of flexure test supports 
+
+t_upper = 1.2e-3;
+t_lower = 1.2e-3;
+t_core = 30e-3;
+
+t_core_foil = 0.0459e-3;           %Cell wall thickness, see Connie page, I have low confidence
+s_core = 6.35e-3;               %Ali core cell diameteer
+G_core_mat = 26e9;              %Shear mod of pure ali
+
+G_core_L = core_effective_G(t_core_foil, s_core, G_core_mat);
+G_core_W = (1/2.5)*G_core_L;
 
 %% Det. Flexural Modulus EI
 
@@ -43,7 +47,7 @@ EI = flexural_mod(E_x_upper, E_x_lower, t_upper, t_core, t_lower, w);
 Pb = 1e3; %Arbitrarily selected
 
 db = bending_axial_defl(Pb, L, EI);  % Bending deflection due to transverse load
-ds = shear_axial_defl(Pb, L, w, t_core, Gc); % Shear deflection due to transverse load
+ds = shear_axial_defl(Pb, L, w, t_core, G_core_L); % Shear deflection due to transverse load
 d = db + ds; %Total deflection
 
 %% Output Files 
