@@ -15,8 +15,10 @@ ABD_lower = readmatrix(lower_laminate_file); % Read in layup configuration
 %% Required Parameters
 t_upper = 1.2e-3;
 t_lower = 1.2e-3;
-% g_core_mat = ##                   %Shear mod of pure ali
-% core_foil_t = ##                  %Wall thickness of ali foil in core
+s_core = 6.35e-3;               %Ali core cell diameteer
+
+g_core_mat = 26e9;              %Shear mod of pure ali
+t_core_foil_t = 0.0459;         %Cell wall thickness, see Connie page, I have low confidence
 t_core = 30e-3;
 w = 275e-3;
 L = 400e-3;                     %Span of flexure test supports 
@@ -36,7 +38,12 @@ E_x_lower = facesheet_E_x(t_lower, A_star_lower);
 EI = flexural_mod(E_x_upper, E_x_lower, t_upper, t_core, t_lower, w);
 
 %% Det. Deflections 
+% To determine deflections you need to assume an applied load. I selected a unit value of
+% 1000N but this can be changed as required.
+Pb = 1e3; %Arbitrarily selected
 
-% Bending Deflection
+db = bending_axial_defl(Pb, L, EI);  % Bending deflection due to transverse load
+ds = shear_axial_defl(Pb, L, w, t_core, Gc); % Shear deflection due to transverse load
+d = db + ds; %Total deflection
 
 %% Output Files 

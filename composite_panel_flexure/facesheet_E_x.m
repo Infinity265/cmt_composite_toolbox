@@ -1,4 +1,4 @@
-function E_x_f = panel_f_mod(t, A_star)
+function E_x_f = facesheet_E_x(t, A_star)
  % Returns elastic modulus (in x dir) of composite face sheet
     %
     % Arguments:
