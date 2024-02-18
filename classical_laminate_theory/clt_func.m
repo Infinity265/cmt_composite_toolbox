@@ -1,18 +1,24 @@
-%% CLT of SIS skin laminate using CFG 1.0
-clear
-clc
+function [ABD, t_laminate] = clt_func(layup_file, material_file)
+    % return ABD matrix for given layup with given material properties.
+    %
+    % Arugments:
+    %   layup_file, : Relative path to layup file.
+    %   material_file : Relative path to material file.
+    %
+    % Output:
+    %   ABD   : Material ABD Matrix 
+    %   t_laminate  :  Thickness of the laminate (mm)
 
-%% Layup input
-layup_name = "2023_SIS_layup";
-layup_file = strcat("CLT_input_layup_data/", layup_name, ".xlsx");
-layup_input_data = readcell(layup_file); % Read in layup configuration
 
-material_file = "CLT_input_ply_mat_data/coupon_testing_2023.xlsx";
-material_input_data = readcell(material_file); % Read in used material data
+%%% This throws a negative when it probably shouldn't.. something to look
+%%% into 
 
-%% Output Options
-% yes or no
-expanded_layup_data_selected = 'yes'; %TODO haven't implemented this functionality yet 
+
+%% Read input excel files
+
+layup_input_data = readcell(strcat(pwd, layup_file)); % Read in layup configuration
+material_input_data = readcell(strcat(pwd, material_file)); % Read used material data
+
 
 %% Determining Rotated Stiffness Matrix (Q_bar) for each ply
 size_layup_data = size(layup_input_data);
@@ -37,21 +43,22 @@ for k=1:n_layers
         if mat_index == cell2mat(material_input_data(i+1,1))%check that this is the indexed material
             layer_mat_prop = material_input_data(i+1,:); %retrieve material properties
         end
+    end
+
     E1 = cell2mat(layer_mat_prop(3));
     E2 = cell2mat(layer_mat_prop(4));
     v12 = cell2mat(layer_mat_prop(5));
     G12 = cell2mat(layer_mat_prop(6));
-    
-    % Det. Qbar for kth ply from mat. properties
+        
+    %Det. Qbar for kth ply from mat. properties
     Q = stiffness_matrix(E1, E2, v12, G12);
     Q_bar = rotate_Q(Q, angle_rad);
-
-    % Populate expanded_layup_data
-    %TODO
     
+    % Populate expanded_layup_data
+    % TODO
+        
     Q_bar_array{k} = Q_bar;
-
-    end
+    
     
 end
 
@@ -62,18 +69,6 @@ z = ply_edges_nonuniform(t_array);
 
 ABD = ABD_matrix(Q_bar_array, z);
 abd = inv(ABD);
+t_laminate = sum([t_array{:}]);
 
-%% Outputs 
-
-dir_out = "CLT_output_data/"
-writematrix(abd, strcat(dir_out) )
-
-
-
-
-
-
-
-
-
-
+end
