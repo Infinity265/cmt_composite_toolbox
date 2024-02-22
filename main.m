@@ -1,7 +1,8 @@
 %% Currently feasibility of UD layups 
+addpath 'C:\Users\matth\Documents\GitHub\cmt_composite_toolbox\classical_laminate_theory' %Cause I wrote the code bad
 
 %% Layup input files
-layup = '2024_SIS_0.3'
+layup = 'test_layup_1'
 material_xlsx_file = "\classical_laminate_theory\CLT_input_ply_mat_data\gurit_data_sheets.xlsx";
 
 layup_xlsx_file = strcat("\classical_laminate_theory\CLT_input_layup_data\", layup, ".xlsx");
