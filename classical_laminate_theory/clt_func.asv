@@ -56,13 +56,13 @@ for k=1:n_layers
     Q_bar_array_1toN{k} = Q_bar; %Q_bar_array arranged from 1st play as 1 and nth ply as nth
 end
 
-Q_bar_array_Nto1 = fliplr(Q_bar_array_1toN);
+Q_bar_array_Nto1 = fliplr
 z = ply_edges_nonuniform(t_array); % Generate z stack
 
 
 %% ABD and abd matrix
 
-ABD = ABD_matrix(Q_bar_array_Nto1, z);
+ABD = ABD_matrix(Q_bar_array, z);
 abd = inv(ABD);
 t_laminate = sum([t_array{:}]);
 
