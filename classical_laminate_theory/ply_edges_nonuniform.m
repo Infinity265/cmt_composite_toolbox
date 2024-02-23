@@ -1,4 +1,4 @@
-function z = ply_edges_nonuniform(t_array)
+function z_flipped = ply_edges_nonuniform(t_array)
     % ply_edges_nonuniform Returns ply top and bottom surface locations.
     %
     % Arugments:
@@ -15,5 +15,6 @@ function z = ply_edges_nonuniform(t_array)
     end
     midplane = max(z_zero)/2;
     z = z_zero - midplane;
+    z_flipped = flip(z);
 
 end
