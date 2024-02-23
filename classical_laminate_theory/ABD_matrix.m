@@ -27,7 +27,7 @@ function ABD = ABD_matrix(Q_bar, z)
         k = length(Q_bar_Nto1);
         while k>=1
            
-           %Determine parameters
+           %Determine layer k parameters
            zk = z(k+1);
            zk_minus1 = z(k);
            Qbar_k =  Q_bar_Nto1{k};

@@ -1,5 +1,7 @@
 %% Currently feasibility of UD layups 
 
+%IMPORTANT this script only uses engineering units (MPa, mm, N)
+
 %Add sub folders to path so that MATLAB can find the funcs in subfolders
 addpath(strcat(pwd, '\classical_laminate_theory'))
 clear
@@ -19,6 +21,6 @@ abd = inv(ABD);
 % abd-matrix as:
 
 E_x = (1/(abd(1,1)*t));
-G_xy = (1/(abd(6,6)*t));
+G_xy = (1/(abd(3,3)*t)); %Currently outputting incorrectly :(
 
 

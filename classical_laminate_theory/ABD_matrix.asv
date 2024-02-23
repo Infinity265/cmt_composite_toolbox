@@ -27,18 +27,15 @@ function ABD = ABD_matrix(Q_bar, z)
         k = length(Q_bar_Nto1);
         while k>=1
            
-           %Determine parameters
+           %Determine layer k parameters
            zk = z(k+1);
            zk_minus1 = z(k);
            Qbar_k =  Q_bar_Nto1{k};
 
-           %Converting to units of MPa and mm
-    z = z * 10^3;
-
            %Sum to A, B or D matrix
-           A = A + Qbar_k * (zk - zk_minus1)
+           A = A + Qbar_k * (zk - zk_minus1);
            B = B + Qbar_k * (zk^2 - zk_minus1^2)/2;
-           D = D + Qbar_k * (zk^3 - zk_minus1^3)/3
+           D = D + Qbar_k * (zk^3 - zk_minus1^3)/3;
            
            %Move to next ply
            k = k-1;
