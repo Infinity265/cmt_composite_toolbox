@@ -19,7 +19,8 @@ abd = inv(ABD);
 % The engineering constants of the laminate can be determined from the
 % abd-matrix as:
 
-E_x = (1/(abd(1,1)*t));
-G_xy = (1/(abd(3,3)*t)); 
+E_x = (1/(abd(1,1)*t))
+E_y = (1/(abd(2,2)*t))
+G_xy = (1/(abd(3,3)*t))
 
 
