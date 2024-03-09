@@ -1,4 +1,4 @@
-function [ABD, t_laminate] = clt_func(layup_file, material_file)
+function [ABD, t_laminate, Q_bar_array, z] = clt_func(layup_file, material_file)
     % return ABD matrix for given layup with given material properties.
     %
     % Arugments:
