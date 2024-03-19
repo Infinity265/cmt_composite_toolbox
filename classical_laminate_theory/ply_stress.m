@@ -15,6 +15,7 @@ function [stress_r, z_int] = ply_stress(strain, Q_bar_array, z, varargin)
     %   stress_r : Matrix of size (3, 2*n) with the stress state in ply CS
     %              at the top and bottom of each ply.
     %   z_int    : Array of length 2*n with edge location for each ply.
+    
     switch nargin
       case 3
         alpha_r = cell(length(Q_bar_array), 1);
